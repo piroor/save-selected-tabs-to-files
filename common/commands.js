@@ -73,22 +73,27 @@ async function suggestFileNameForTab(tab) {
   let suggestedExtension = '';
   if (!tab.discarded &&
       Permissions.isPermittedTab(tab) &&
-      Permissions.isGranted(Permissions.ALL_URLS)) {
+      await Permissions.isGranted(Permissions.ALL_URLS)) {
     log(`getting content type of ${tab.id}`);
-    let contentType = await browser.tabs.executeScript(tab.id, {
-      code: `document.contentType`
-    });
-    if (Array.isArray(contentType))
-      contentType = contentType[0];
-    log(`contentType of ${tab.id}: `, contentType);
-    if (/^(text\/html|application\/xhtml\+xml)/.test(contentType)) {
-      suggestedExtension = '.html';
+    try {
+      let contentType = await browser.tabs.executeScript(tab.id, {
+        code: `document.contentType`
+      });
+      if (Array.isArray(contentType))
+        contentType = contentType[0];
+      log(`contentType of ${tab.id}: `, contentType);
+      if (/^(text\/html|application\/xhtml\+xml)/.test(contentType)) {
+        suggestedExtension = '.html';
+      }
+      else if (/^text\//.test(contentType)) {
+        suggestedExtension = '.txt';
+      }
+      else if (/^image\//.test(contentType)) {
+        suggestedExtension = `.${contentType.replace(/^image\/|\+.+$/g, '')}`;
+      }
     }
-    else if (/^text\//.test(contentType)) {
-      suggestedExtension = '.txt';
-    }
-    else if (/^image\//.test(contentType)) {
-      suggestedExtension = `.${contentType.replace(/^image\/|\+.+$/g, '')}`;
+    catch(e) {
+      log('Error! ', e);
     }
   }
   log('suggestedExtension: ', tab.id, suggestedExtension);
