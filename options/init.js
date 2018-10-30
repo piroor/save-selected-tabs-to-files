@@ -9,6 +9,7 @@ import {
   log,
   configs
 } from '/common/common.js';
+import * as Permissions from '/common/permissions.js';
 import Options from '/extlib/Options.js';
 import ShortcutCustomizeUI from '/extlib/ShortcutCustomizeUI.js';
 import '../extlib/l10n.js';
@@ -34,6 +35,11 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   configs.$loaded.then(() => {
+    Permissions.bindToCheckbox(
+      Permissions.ALL_URLS,
+      document.querySelector('#allUrlsPermissionGranted')
+    );
+
     options.buildUIForAllConfigs(document.querySelector('#debug-configs'));
     onConfigChanged('debug');
   });

@@ -9,7 +9,9 @@
     "downloads",
     "menus",
     "storage",
-    "tabs",
+    "tabs"
+  ],
+  "optional_permissions": [
     "<all_urls>"
   ],
   "icons": {
