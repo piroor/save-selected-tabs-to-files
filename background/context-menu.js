@@ -21,14 +21,17 @@ const mMenuItem = {
   icons:    browser.runtime.getManifest().icons,
   contexts: ['tab', 'page']
 };
-browser.menus.create(mMenuItem);
-try {
-  browser.runtime.sendMessage(Constants.kTST_ID, {
-    type:   Constants.kTSTAPI_CONTEXT_MENU_CREATE,
-    params: mMenuItem
-  }).catch(handleMissingReceiverError);
-}
-catch(_e) {
+
+export function init() {
+  browser.menus.create(mMenuItem);
+  try {
+    browser.runtime.sendMessage(Constants.kTST_ID, {
+      type:   Constants.kTSTAPI_CONTEXT_MENU_CREATE,
+      params: mMenuItem
+    }).catch(handleMissingReceiverError);
+  }
+  catch(_e) {
+  }
 }
 
 async function onShown(info, tab) {
@@ -101,3 +104,5 @@ function onTSTAPIMessage(message) {
       return onShown(message.info, message.tab);
   }
 }
+
+init();
