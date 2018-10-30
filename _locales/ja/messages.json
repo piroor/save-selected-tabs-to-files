@@ -12,6 +12,8 @@
   "config_saveTabsPrefix_label_after": { "message": "以下に保存する" },
   "config_saveTabsPrefix_description": { "message": "※ダウンロードフォルダ配下の保存先パスを指定できます。「/」はパスの区切り文字として解釈されます。" },
 
+  "config_allUrlsPermissionGranted_label": { "message": "タブの内容のContent-Typeに基づいてファイル名の拡張子を推定する" },
+
   "config_showContextCommandForSingleTab_label": { "message": "タブが複数選択されていない場合でもコンテキストメニューの項目を有効化する" },
 
   "config_clearSelectionAfterCommandInvoked_label": { "message": "コマンドの実行後にタブの選択を解除する" },

@@ -12,6 +12,8 @@
   "config_saveTabsPrefix_label_after": { "message": "\u200b" },
   "config_saveTabsPrefix_description": { "message": "*Path under the download folder. \"/\" will be recognized as a path delimiter." },
 
+  "config_allUrlsPermissionGranted_label": { "message": "Guess filename extension based on Content-Type of tabs" },
+
   "config_showContextCommandForSingleTab_label": { "message": "Activate context menu command when there is no multiselection" },
 
   "config_clearSelectionAfterCommandInvoked_label": { "message": "Clear selection after a command is invoked" },
