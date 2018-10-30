@@ -18,6 +18,7 @@ const mMenuItem = {
   type:     'normal',
   visible:  true,
   title:    browser.i18n.getMessage('context_saveTabs_label'),
+  icons:    browser.runtime.getManifest().icons,
   contexts: ['tab', 'page']
 };
 browser.menus.create(mMenuItem);
