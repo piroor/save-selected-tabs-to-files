@@ -1,6 +1,6 @@
 {
-  "extensionName": { "message": "マルチプルタブハンドラ" },
-  "extensionDescription": { "message": "複数のタブをまとめて操作する機能を提供します。" },
+  "extensionName": { "message": "選択したタブを保存" },
+  "extensionDescription": { "message": "選択されたタブをローカルファイルとして保存する機能を提供します。" },
 
   "saveTabsPrefix_defaultValue": { "message": "保存されたタブ/" },
 

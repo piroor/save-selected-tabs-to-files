@@ -1,12 +1,4 @@
 {
-    "extensionName": {
-        "message": "Multiple Tab Handler",
-        "hash": "1ae1c8610559ba82a18c082648d91729"
-    },
-    "extensionDescription": {
-        "message": "让你能一次操控多个标签页。",
-        "hash": "7d75b0fb3741e0e731ec5ea7058cacf3"
-    },
     "saveTabsPrefix_defaultValue": {
         "message": "已保存标签页/",
         "hash": "c4de7a7d09f7247035c1686067b893b5"

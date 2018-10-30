@@ -1,6 +1,6 @@
 {
-  "extensionName": { "message": "Multiple Tab Handler" },
-  "extensionDescription": { "message": "Provides ability to manage multiple tabs at a time." },
+  "extensionName": { "message": "Save Selected Tabs to Files" },
+  "extensionDescription": { "message": "Provides ability to save selected tabs to local files." },
 
   "saveTabsPrefix_defaultValue": { "message": "Saved Tabs/" },
 
