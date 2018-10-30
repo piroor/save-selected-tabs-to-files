@@ -61,7 +61,7 @@ async function onClick(info, tab) {
           tabs.length > 1) {
         const activeTab = tabs.filter(tab => tab.active)[0];
         browser.tabs.highlight({
-          windowId: activeTab.id,
+          windowId: activeTab.windowId,
           tabs:     [activeTab.index]
         });
       }

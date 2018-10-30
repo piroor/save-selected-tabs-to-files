@@ -44,7 +44,7 @@ async function onShortcutCommand(command) {
       await Commands.saveTabs(tabs);
       if (configs.clearSelectionAfterCommandInvoked) {
         browser.tabs.highlight({
-          windowId: activeTab.id,
+          windowId: activeTab.windowId,
           tabs:     [activeTab.index]
         });
       }
