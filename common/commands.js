@@ -70,21 +70,21 @@ async function suggestFileNameForTab(tab) {
   let suggestedExtension = '';
   if (!tab.discarded) {
     log(`getting content type of ${tab.id}`);
-      let contentType = await browser.tabs.executeScript(tab.id, {
-        code: `document.contentType`
-      });
-      if (Array.isArray(contentType))
-        contentType = contentType[0];
-      log(`contentType of ${tab.id}: `, contentType);
-      if (/^(text\/html|application\/xhtml\+xml)/.test(contentType)) {
-        suggestedExtension = '.html';
-      }
-      else if (/^text\//.test(contentType)) {
-        suggestedExtension = '.txt';
-      }
-      else if (/^image\//.test(contentType)) {
-        suggestedExtension = `.${contentType.replace(/^image\/|\+.+$/g, '')}`;
-      }
+    let contentType = await browser.tabs.executeScript(tab.id, {
+      code: `document.contentType`
+    });
+    if (Array.isArray(contentType))
+      contentType = contentType[0];
+    log(`contentType of ${tab.id}: `, contentType);
+    if (/^(text\/html|application\/xhtml\+xml)/.test(contentType)) {
+      suggestedExtension = '.html';
+    }
+    else if (/^text\//.test(contentType)) {
+      suggestedExtension = '.txt';
+    }
+    else if (/^image\//.test(contentType)) {
+      suggestedExtension = `.${contentType.replace(/^image\/|\+.+$/g, '')}`;
+    }
   }
   log('suggestedExtension: ', tab.id, suggestedExtension);
   const fileName = `${tab.title.replace(/[\/\\:*?"<>|]/g, '_')}${suggestedExtension}`;
