@@ -30,11 +30,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 /*  listen events */
 
 async function onShortcutCommand(command) {
+  log('command: ', command);
   const activeTab = (await browser.tabs.query({
     active:        true,
     currentWindow: true
   }))[0];
   const tabs = await Commands.getMultiselectedTabs(activeTab);
+  log('tabs: ', { activeTab, tabs });
 
   if (tabs.length <= 0)
     return;

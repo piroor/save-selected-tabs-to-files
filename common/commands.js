@@ -34,6 +34,7 @@ async function suggestUniqueFileNameForTab(tab, alreadyUsedNames) {
   let name = await suggestFileNameForTab(tab);
   if (!alreadyUsedNames.has(name)) {
     alreadyUsedNames.add(name);
+    log(`filename for tab ${tab.id}: `, name);
     return name;
   }
   const WITH_SUFFIX_MATCHER = /(-(\d+)(\.?[^\.]+))$/;
@@ -49,6 +50,7 @@ async function suggestUniqueFileNameForTab(tab, alreadyUsedNames) {
     if (alreadyUsedNames.has(newName))
       continue;
     alreadyUsedNames.add(newName);
+    log(`filename for tab ${tab.id}: `, newName);
     return newName;
   }
 }
