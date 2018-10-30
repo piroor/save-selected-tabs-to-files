@@ -4,6 +4,7 @@
 
   "saveTabsPrefix_defaultValue": { "message": "保存されたタブ/" },
 
+  "context_saveTab_label":                { "message": "ファイルに保存(&V)" },
   "context_saveTabs_label":               { "message": "ファイルに保存(&V)" },
   "command_saveSelectedTabs":              { "message": "選択中のタブをファイルに保存" },
 
