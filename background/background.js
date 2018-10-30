@@ -34,7 +34,7 @@ async function onShortcutCommand(command) {
     active:        true,
     currentWindow: true
   }))[0];
-  const tabs = Commands.getMultiselectedTabs(activeTab);
+  const tabs = await Commands.getMultiselectedTabs(activeTab);
 
   if (tabs.length <= 0)
     return;
