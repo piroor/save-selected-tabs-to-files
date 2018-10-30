@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 1.0.2 (2018.10.30)
+   * Don't execute command for all unselected tabs.
  - 1.0.1 (2018.10.30)
    * Make `<all_urls>` permission optional.
    * Run command from keyboard shortcut correctly.

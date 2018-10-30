@@ -12,10 +12,13 @@ import {
 import * as Permissions from './permissions.js';
 
 export async function getMultiselectedTabs(tab) {
-  return browser.tabs.query({
-    windowId: tab.windowId,
-    highlighted: tab.highlighted
-  });
+  if (tab.highlighted)
+    return browser.tabs.query({
+      windowId:    tab.windowId,
+      highlighted: true
+    });
+  else
+    return [tab];
 }
 
 export async function saveTabs(tabs) {
