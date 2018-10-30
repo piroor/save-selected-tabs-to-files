@@ -5,10 +5,6 @@
 */
 'use strict';
 
-export const kCOMMAND_UNREGISTER_FROM_TST           = 'multipletab:unregister-from-tst';
-
-export const kNOTIFICATION_DEFAULT_ICON = '/resources/24x24-light.svg';
-
 export const kTST_ID = 'treestyletab@piro.sakura.ne.jp';
 
 export const kTSTAPI_REGISTER_SELF           = 'register-self';
