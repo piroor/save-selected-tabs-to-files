@@ -9,6 +9,7 @@ import {
   log,
   configs
 } from './common.js';
+import * as Permissions from './permissions.js';
 
 export async function getMultiselectedTabs(tab) {
   return browser.tabs.query({
@@ -68,7 +69,9 @@ async function suggestFileNameForTab(tab) {
     return fileNameMatch[1];
 
   let suggestedExtension = '';
-  if (!tab.discarded) {
+  if (!tab.discarded &&
+      Permissions.isPermittedTab(tab) &&
+      Permissions.isGranted(Permissions.ALL_URLS)) {
     log(`getting content type of ${tab.id}`);
     let contentType = await browser.tabs.executeScript(tab.id, {
       code: `document.contentType`
