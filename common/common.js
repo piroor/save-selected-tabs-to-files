@@ -48,23 +48,6 @@ export async function wait(task = 0, timeout = 0) {
   });
 }
 
-export async function notify(params = {}) {
-  const id = await browser.notifications.create({
-    type:    'basic',
-    iconUrl: params.icon,
-    title:   params.title,
-    message: params.message
-  });
-
-  let timeout = params.timeout;
-  if (typeof timeout != 'number')
-    timeout = configs.notificationTimeout;
-  if (timeout >= 0)
-    await wait(timeout);
-
-  await browser.notifications.clear(id);
-}
-
 export function handleMissingReceiverError(error) {
   if (!error ||
       !error.message ||

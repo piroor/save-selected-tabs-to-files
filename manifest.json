@@ -9,11 +9,8 @@
     "downloads",
     "menus",
     "menus.overrideContext",
-    "notifications",
     "storage",
-    "tabs"
-  ],
-  "optional_permissions": [
+    "tabs",
     "<all_urls>"
   ],
   "icons": {
