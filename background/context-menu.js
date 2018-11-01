@@ -32,6 +32,13 @@ export function init() {
   }
   catch(_e) {
   }
+  try {
+    browser.runtime.sendMessage(Constants.kMTH_ID, Object.assign({}, mMenuItem, {
+      type: Constants.kMTHAPI_ADD_SELECTED_TAB_COMMAND
+    })).catch(handleMissingReceiverError);
+  }
+  catch(_e) {console.log(e);
+  }
 }
 
 async function onShown(info, tab) {
