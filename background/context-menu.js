@@ -37,7 +37,7 @@ export function init() {
       type: Constants.kMTHAPI_ADD_SELECTED_TAB_COMMAND
     })).catch(handleMissingReceiverError);
   }
-  catch(_e) {console.log(e);
+  catch(_e) {
   }
 }
 
