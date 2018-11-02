@@ -69,7 +69,7 @@ function onMessageExternal(message, sender) {
           break;
       }
       if (result !== undefined)
-        return result;
+        return Promise.resolve(result);
     }; break;
 
     case Constants.kMTH_ID: { // Multiple Tab Handler API
@@ -81,7 +81,7 @@ function onMessageExternal(message, sender) {
           break;
       }
       if (result !== undefined)
-        return result;
+        return Promise.resolve(result);
     }; break;
 
     default:
