@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 1.0.4 (2018.11.3)
+   * Improve compatibility with Multiple Tab Handler.
  - 1.0.3 (2018.10.31)
    * Improve compatibility with Tree Style Tab.
    * Update menu label when there is no more multiselected tab.
