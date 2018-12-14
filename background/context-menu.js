@@ -68,9 +68,9 @@ async function onShown(info, tab) {
 }
 browser.menus.onShown.addListener(onShown);
 
-async function onClick(info, tab) {
+async function onClick(info, tab, selectedTabs = null) {
   log('context menu item clicked: ', info, tab);
-  const tabs = await Commands.getMultiselectedTabs(tab);
+  const tabs = selectedTabs || await Commands.getMultiselectedTabs(tab);
   log('tabs: ', tabs);
   switch (info.menuItemId) {
     case 'saveTabs':
@@ -102,6 +102,12 @@ function onMessageExternal(message, sender) {
         return result;
     }; break;
 
+    case Constants.kMTH_ID: { // Multiple Tab Handler API
+      const result = onMTHAPIMessage(message);
+      if (result !== undefined)
+        return result;
+    }; break;
+
     default:
       break;
   }
@@ -115,6 +121,13 @@ function onTSTAPIMessage(message) {
 
     case Constants.kTSTAPI_CONTEXT_MENU_SHOWN:
       return onShown(message.info, message.tab);
+  }
+}
+
+function onMTHAPIMessage(message) {
+  switch (message.type) {
+    case Constants.kMTHAPI_INVOKE_SELECTED_TAB_COMMAND:
+      return onClick({ menuItemId: message.id }, null, message.selection.selected);
   }
 }
 
