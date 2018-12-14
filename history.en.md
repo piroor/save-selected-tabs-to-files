@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 1.0.5 (2018.12.15)
+   * Invoke command from Multiple Tab Handler correctly.
  - 1.0.4 (2018.11.3)
    * Improve compatibility with Multiple Tab Handler.
  - 1.0.3 (2018.10.31)
