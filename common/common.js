@@ -8,6 +8,8 @@
 import Configs from '/extlib/Configs.js';
 
 export const configs = new Configs({
+  showContextCommandOnTab: true,
+  showContextCommandOnPage: false,
   showContextCommandForSingleTab: false,
   clearSelectionAfterCommandInvoked: false,
   saveTabsPrefix: browser.i18n.getMessage('saveTabsPrefix_defaultValue'),

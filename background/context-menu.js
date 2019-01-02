@@ -13,58 +13,89 @@ import {
 import * as Constants from '/common/constants.js';
 import * as Commands from '/common/commands.js';
 
-const mMenuItem = {
-  id:       'saveTabs',
+const mMenuItems = [
+{
+  id:       'saveTabsOnTab',
   type:     'normal',
   visible:  true,
   title:    browser.i18n.getMessage('context_saveTabs_label'),
   icons:    browser.runtime.getManifest().icons,
-  contexts: ['tab', 'page']
-};
+  contexts: ['tab'],
+  config:   'showContextCommandOnTab'
+},
+{
+  id:       'saveTabsOnPage',
+  type:     'normal',
+  visible:  true,
+  title:    browser.i18n.getMessage('context_saveTabs_label'),
+  icons:    browser.runtime.getManifest().icons,
+  contexts: ['page'],
+  config:   'showContextCommandOnPage'
+}
+];
 
 export function init() {
-  browser.menus.create(mMenuItem);
-  try {
-    browser.runtime.sendMessage(Constants.kTST_ID, {
-      type:   Constants.kTSTAPI_CONTEXT_MENU_CREATE,
-      params: mMenuItem
-    }).catch(handleMissingReceiverError);
-  }
-  catch(_e) {
-  }
-  try {
-    browser.runtime.sendMessage(Constants.kMTH_ID, Object.assign({}, mMenuItem, {
-      type: Constants.kMTHAPI_ADD_SELECTED_TAB_COMMAND
-    })).catch(handleMissingReceiverError);
-  }
-  catch(_e) {
+  for (const item of mMenuItems) {
+    const params = {
+      id:       item.id,
+      type:     item.type || 'normal',
+      visible:  true,
+      title:    item.title,
+      icons:    item.icons,
+      contexts: item.contexts
+    };
+    browser.menus.create(params);
+    if (!item.contexts.includes('tab'))
+      continue;
+    try {
+      browser.runtime.sendMessage(Constants.kTST_ID, {
+        type:   Constants.kTSTAPI_CONTEXT_MENU_CREATE,
+        params: params
+      }).catch(handleMissingReceiverError);
+    }
+    catch(_e) {
+    }
+    try {
+      browser.runtime.sendMessage(Constants.kMTH_ID, Object.assign({}, params, {
+        type: Constants.kMTHAPI_ADD_SELECTED_TAB_COMMAND
+      })).catch(handleMissingReceiverError);
+    }
+    catch(_e) {
+    }
   }
 }
 
 async function onShown(info, tab) {
   const tabs = await Commands.getMultiselectedTabs(tab);
-  const lastVisible = mMenuItem.visible;
-  const lastTitle   = mMenuItem.title;
-  mMenuItem.visible = tabs.length > 1 || configs.showContextCommandForSingleTab;
-  mMenuItem.title   = browser.i18n.getMessage(tabs.length > 1 ? 'context_saveTabs_label' : 'context_saveTab_label');
-  if (lastVisible == mMenuItem.visible &&
-      lastTitle == mMenuItem.title)
-    return;
+  let updated = false;
+  for (const item of mMenuItems) {
+  const lastVisible = item.visible;
+  const lastTitle   = item.title;
+  item.visible = configs[item.config] && tabs.length > 1 || configs.showContextCommandForSingleTab;
+  item.title   = browser.i18n.getMessage(tabs.length > 1 ? 'context_saveTabs_label' : 'context_saveTab_label');
+  if (lastVisible == item.visible &&
+      lastTitle == item.title)
+    continue;
 
   const params = {
-    visible: mMenuItem.visible,
-    title:   mMenuItem.title
+    visible: item.visible,
+    title:   item.title
   };
-  browser.menus.update(mMenuItem.id, params);
-  browser.menus.refresh();
+  browser.menus.update(item.id, params);
+  updated = true;
+  if (!item.contexts.includes('tab'))
+    continue;
   try {
     browser.runtime.sendMessage(Constants.kTST_ID, {
       type:   Constants.kTSTAPI_CONTEXT_MENU_UPDATE,
-      params: [mMenuItem.id, params]
+      params: [item.id, params]
     }).catch(handleMissingReceiverError);
   }
   catch(_e) {
   }
+  }
+  if (updated)
+  browser.menus.refresh();
 }
 browser.menus.onShown.addListener(onShown);
 
@@ -73,7 +104,8 @@ async function onClick(info, tab, selectedTabs = null) {
   const tabs = selectedTabs || await Commands.getMultiselectedTabs(tab);
   log('tabs: ', tabs);
   switch (info.menuItemId) {
-    case 'saveTabs':
+    case 'saveTabsOnTab':
+    case 'saveTabsOnPage':
       await Commands.saveTabs(tabs);
       if (configs.clearSelectionAfterCommandInvoked &&
           tabs.length > 1) {
