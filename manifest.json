@@ -15,10 +15,10 @@
     "<all_urls>"
   ],
   "icons": {
-    "16": "/resources/Save.svg"
+    "16": "resources/Save.svg"
   },
   "background": {
-    "page": "/background/background.html"
+    "page": "background/background.html"
   },
   "commands": {
     "saveSelectedTabs": {
@@ -26,7 +26,7 @@
     }
   },
   "options_ui": {
-    "page": "/options/options.html",
+    "page": "options/options.html",
     "browser_style": true
   },
   "default_locale": "en",
