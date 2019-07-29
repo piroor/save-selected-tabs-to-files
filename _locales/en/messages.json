@@ -8,6 +8,10 @@
   "context_saveTabs_label":               { "message": "Sa&ve Tabs as Files" },
   "command_saveSelectedTabs":              { "message": "Save Selected Tabs as Files" },
 
+  "dialog_inputDescription":  { "message": "Input a folter name to save files within" },
+  "dialog_save":              { "message": "Create Folder and Save" },
+  "dialog_cancel":            { "message": "Cancel" },
+
   "config_saveTabs_caption": { "message": "Save Tabs as Files" },
   "config_saveTabsPrefix_label_before": { "message": "Save tabs under " },
   "config_saveTabsPrefix_label_after": { "message": "\u200b" },

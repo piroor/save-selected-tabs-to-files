@@ -11,6 +11,8 @@ import {
 } from './common.js';
 import * as Permissions from './permissions.js';
 
+import RichConfirm from '/extlib/RichConfirm.js';
+
 export async function getMultiselectedTabs(tab) {
   if (!tab)
     return [];
@@ -23,8 +25,50 @@ export async function getMultiselectedTabs(tab) {
     return [tab];
 }
 
+const PREFIX_INPUT_PLACEHOLDER_MATCHER = /(^.*)(%input%)(.*$)/i;
+
 export async function saveTabs(tabs) {
+  if (!tabs.length)
+    return;
+
   let prefix = configs.saveTabsPrefix;
+  const matched = prefix.match(PREFIX_INPUT_PLACEHOLDER_MATCHER);
+  if (matched) {
+    log('matched for placeholder: ', matched);
+    const prePart  = matched[1] || '';
+    const postPart = matched[3] || '';
+    let input;
+    try {
+      const tabId = (tabs.find(tab => tab.active) || tabs[0]).id;
+      log('  tabId: ', tabId);
+      const result = await RichConfirm.showInTab(tabId, {
+        content: `
+          <div>${browser.i18n.getMessage('dialog_inputDescription')}</div>
+          <div><label>${prePart}
+                      <input type="text"
+                             name="input"
+                             value="">
+                      ${postPart}</div>
+        `,
+        onShown(container) {
+          container.querySelector('[name="input"]').select();
+        },
+        buttons: [
+          browser.i18n.getMessage('dialog_save'),
+          browser.i18n.getMessage('dialog_cancel')
+        ]
+      });
+      log('  result: ', result);
+      if (result.buttonIndex != 0)
+        return;
+      input = result.values.input || '';
+      prefix = `${prePart}${input}${postPart}`;
+    }
+    catch(error) {
+      log('error: ', error);
+    }
+    log(' => ', { input, prefix });
+  }
   prefix = `${prefix.replace(/\/$/, '')}/`;
   const alreadyUsedNames = new Set();
   for (const tab of tabs) {

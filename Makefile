@@ -26,3 +26,4 @@ install_extlib:
 	cp submodules/webextensions-lib-options/Options.js extlib/; echo 'export default Options;' >> extlib/Options.js
 	cp submodules/webextensions-lib-l10n/l10n.js extlib/; echo 'export default l10n;' >> extlib/l10n.js
 	cp submodules/webextensions-lib-shortcut-customize-ui/ShortcutCustomizeUI.js extlib/; echo 'export default ShortcutCustomizeUI;' >> extlib/ShortcutCustomizeUI.js
+	cp submodules/webextensions-lib-rich-confirm/RichConfirm.js extlib/; echo 'export default RichConfirm;' >> extlib/RichConfirm.js
