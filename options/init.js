@@ -29,19 +29,21 @@ function onConfigChanged(key) {
 }
 
 configs.$addObserver(onConfigChanged);
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   ShortcutCustomizeUI.build().then(aUI => {
     document.getElementById('shortcuts').appendChild(aUI);
   });
 
-  configs.$loaded.then(() => {
-    Permissions.bindToCheckbox(
-      Permissions.ALL_URLS,
-      document.querySelector('#allUrlsPermissionGranted')
-    );
+  await configs.$loaded;
 
-    options.buildUIForAllConfigs(document.querySelector('#debug-configs'));
-    onConfigChanged('debug');
-  });
+  Permissions.bindToCheckbox(
+    Permissions.ALL_URLS,
+    document.querySelector('#allUrlsPermissionGranted')
+  );
+
+  options.buildUIForAllConfigs(document.querySelector('#debug-configs'));
+  onConfigChanged('debug');
+
+  document.documentElement.classList.add('initialized');
 }, { once: true });
 
