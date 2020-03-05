@@ -11,7 +11,6 @@ import {
 } from '/common/common.js';
 import * as Permissions from '/common/permissions.js';
 import Options from '/extlib/Options.js';
-import ShortcutCustomizeUI from '/extlib/ShortcutCustomizeUI.js';
 import '../extlib/l10n.js';
 
 log.context = 'Options';
@@ -30,10 +29,6 @@ function onConfigChanged(key) {
 
 configs.$addObserver(onConfigChanged);
 window.addEventListener('DOMContentLoaded', async () => {
-  ShortcutCustomizeUI.build().then(aUI => {
-    document.getElementById('shortcuts').appendChild(aUI);
-  });
-
   await configs.$loaded;
 
   Permissions.bindToCheckbox(
