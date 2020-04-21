@@ -39,9 +39,10 @@ export async function saveTabs(tabs) {
     const postPart = matched[3] || '';
     let input;
     try {
-      const tabId = (tabs.find(tab => tab.active) || tabs[0]).id;
-      log('  tabId: ', tabId);
-      const result = await RichConfirm.showInTab(tabId, {
+      const windowId = (tabs.find(tab => tab.active) || tabs[0]).windowId;
+      log('  windowId: ', windowId);
+      const result = await RichConfirm.showInPopup(windowId, {
+        title: browser.i18n.getMessage('dialog_title'),
         content: `
           <div>${browser.i18n.getMessage('dialog_inputDescription')}</div>
           <div><label>${prePart}

@@ -8,7 +8,8 @@
   "context_saveTabs_label":               { "message": "Sa&ve Tabs as Files" },
   "command_saveSelectedTabs":              { "message": "Save Selected Tabs as Files" },
 
-  "dialog_inputDescription":  { "message": "Input a folter name to save files within" },
+  "dialog_title":             { "message": "Where to save?" },
+  "dialog_inputDescription":  { "message": "Input a folder name to save files within" },
   "dialog_save":              { "message": "Create Folder and Save" },
   "dialog_cancel":            { "message": "Cancel" },
 

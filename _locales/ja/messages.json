@@ -8,6 +8,7 @@
   "context_saveTabs_label":               { "message": "ファイルに保存(&V)" },
   "command_saveSelectedTabs":              { "message": "選択中のタブをファイルに保存" },
 
+  "dialog_title":             { "message": "どこに保存しますか？" },
   "dialog_inputDescription":  { "message": "ファイルの保存先フォルダ名を入力してください" },
   "dialog_save":              { "message": "フォルダを作成して保存" },
   "dialog_cancel":            { "message": "キャンセル" },
