@@ -1,6 +1,7 @@
 # History
 
  - master/HEAD
+   * Show folder name prompt as a semi-modal popup window.
  - 1.0.8 (2020.3.6)
    * Show in-content confirmation dialog correctly on lately versions of Firefox.
    * Remove keyboard shorctut customization UI, because Firefox ESR68 has it.
