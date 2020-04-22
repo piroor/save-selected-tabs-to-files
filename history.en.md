@@ -1,6 +1,7 @@
 # History
 
  - master/HEAD
+ - 1.1.0 (2020.4.22)
    * Show folder name prompt as a semi-modal popup window.
  - 1.0.8 (2020.3.6)
    * Show in-content confirmation dialog correctly on lately versions of Firefox.
