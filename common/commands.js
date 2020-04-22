@@ -42,6 +42,7 @@ export async function saveTabs(tabs) {
       const windowId = (tabs.find(tab => tab.active) || tabs[0]).windowId;
       log('  windowId: ', windowId);
       const result = await RichConfirm.showInPopup(windowId, {
+        modal: true,
         title: browser.i18n.getMessage('dialog_title'),
         content: `
           <div>${browser.i18n.getMessage('dialog_inputDescription')}</div>
