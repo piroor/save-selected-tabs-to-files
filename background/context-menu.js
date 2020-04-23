@@ -56,9 +56,10 @@ export function init() {
     catch(_e) {
     }
     try {
-      browser.runtime.sendMessage(Constants.kMTH_ID, Object.assign({}, params, {
+      browser.runtime.sendMessage(Constants.kMTH_ID, {
+        ...params,
         type: Constants.kMTHAPI_ADD_SELECTED_TAB_COMMAND
-      })).catch(handleMissingReceiverError);
+      }).catch(handleMissingReceiverError);
     }
     catch(_e) {
     }
