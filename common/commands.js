@@ -43,6 +43,7 @@ export async function saveTabs(tabs) {
       log('  windowId: ', windowId);
       const result = await RichConfirm.showInPopup(windowId, {
         modal: true,
+        type:  'common-dialog',
         url:   '/resources/blank.html', // required on Firefox ESR68
         title: browser.i18n.getMessage('dialog_title'),
         content: `
