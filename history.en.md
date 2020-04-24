@@ -2,7 +2,7 @@
 
  - master/HEAD
  - 1.1.1 (2020.4.23)
-   * Show popup windows correctly on Firefox ESR68. (regression on 1.2.0)
+   * Show popup windows correctly on Firefox ESR68. (regression on 1.1.0)
  - 1.1.0 (2020.4.22)
    * Show folder name prompt as a semi-modal popup window.
  - 1.0.8 (2020.3.6)
