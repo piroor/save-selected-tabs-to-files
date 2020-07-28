@@ -53,7 +53,7 @@ export async function saveTabs(tabs) {
                      }<input type="text"
                              name="input"
                              value=""
-                     >${postPart}</div>
+                     >${postPart}</label></div>
         `.trim(),
         /* eslint-enable indent */
         onShown(container) {
