@@ -1,6 +1,9 @@
 # History
 
  - master/HEAD
+ - 1.1.4 (2020.7.29)
+   * Better support for the Managed Storage.
+   * Flexible width input field for the dialog to input the folder name.
  - 1.1.3 (2020.4.28)
    * Handle dismissed semi-modal dialogs correctly.
    * Optimize semi-modal dialogs a little.
