@@ -46,19 +46,23 @@ export async function saveTabs(tabs) {
         type:  'common-dialog',
         url:   '/resources/blank.html', // required on Firefox ESR68
         title: browser.i18n.getMessage('dialog_title'),
-        /* eslint-disable indent */
         content: `
-          <div style="white-space: nowrap;"
-              >${browser.i18n.getMessage('dialog_inputDescription')}</div
-         ><div style="white-space: nowrap;
+          <div>${browser.i18n.getMessage('dialog_inputDescription')}</div
+         ><div style="display: flex;
+                      flex-direction: column;
+                      white-space: nowrap;
                       margin: 0.5em;"
-              ><label>${prePart
-                     }<input type="text"
+              ><label style="display: flex;
+                             flex-direction: row;"
+                     ><span>${prePart}</span
+                     ><input type="text"
                              name="input"
                              value=""
-                     >${postPart}</label></div>
+                             style="display: flex;
+                                    flex-grow: 1;
+                                    flex-shrink: 1;"
+                     ><span>${postPart}</span></label></div>
         `.trim(),
-        /* eslint-enable indent */
         onShown(container) {
           container.querySelector('[name="input"]').select();
         },
