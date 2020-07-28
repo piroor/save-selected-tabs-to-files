@@ -48,8 +48,11 @@ export async function saveTabs(tabs) {
         title: browser.i18n.getMessage('dialog_title'),
         /* eslint-disable indent */
         content: `
-          <div>${browser.i18n.getMessage('dialog_inputDescription')}</div
-         ><div><label>${prePart
+          <div style="white-space: nowrap;"
+              >${browser.i18n.getMessage('dialog_inputDescription')}</div
+         ><div style="white-space: nowrap;
+                      margin: 0.5em;"
+              ><label>${prePart
                      }<input type="text"
                              name="input"
                              value=""
