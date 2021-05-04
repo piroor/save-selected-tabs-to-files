@@ -13,6 +13,9 @@
   "dialog_save":              { "message": "Create Folder and Save" },
   "dialog_cancel":            { "message": "Cancel" },
 
+  "config_useDownloadDirOption_caption": { "message": "Important note before start using" },
+  "config_useDownloadDirOption_note": { "message": "It is strongly recommended to configure Firefox itself to save downloaded files to a single folder: Firefox settings => \"General\" => \"Files and Applications\" => \"Downloads\" => choose \"Save files to\". If \"Always ask you where to save files\" is chosen, you'll see a \"save file as...\" common dialog for every files downloaded from tabs, and it will be too annoying." },
+
   "config_saveTabs_caption": { "message": "Save Tabs as Files" },
   "config_saveTabsPrefix_label_before": { "message": "Save tabs under " },
   "config_saveTabsPrefix_label_after": { "message": "\u200b" },

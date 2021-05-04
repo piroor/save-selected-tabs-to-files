@@ -13,6 +13,11 @@ export const configs = new Configs({
   showContextCommandForSingleTab: false,
   clearSelectionAfterCommandInvoked: false,
   saveTabsPrefix: browser.i18n.getMessage('saveTabsPrefix_defaultValue'),
+
+  optionsExpandedGroups: [
+    'useDownloadDirOptionNote',
+  ],
+
   debug: false
 }, {
   localKeys: `

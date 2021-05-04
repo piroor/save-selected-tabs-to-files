@@ -31,6 +31,37 @@ configs.$addObserver(onConfigChanged);
 window.addEventListener('DOMContentLoaded', async () => {
   await configs.$loaded;
 
+  const focusedItem = document.querySelector(':target');
+  for (const fieldset of document.querySelectorAll('fieldset.collapsible')) {
+    if (configs.optionsExpandedGroups.includes(fieldset.id) ||
+        (focusedItem && fieldset.contains(focusedItem)))
+      fieldset.classList.remove('collapsed');
+    else
+      fieldset.classList.add('collapsed');
+
+    const onChangeCollapsed = () => {
+      if (!fieldset.id)
+        return;
+      const otherExpandedSections = configs.optionsExpandedGroups.filter(id => id != fieldset.id);
+      if (fieldset.classList.contains('collapsed'))
+        configs.optionsExpandedGroups = otherExpandedSections;
+      else
+        configs.optionsExpandedGroups = otherExpandedSections.concat([fieldset.id]);
+    };
+
+    const legend = fieldset.querySelector(':scope > legend');
+    legend.addEventListener('click', () => {
+      fieldset.classList.toggle('collapsed');
+      onChangeCollapsed();
+    });
+    legend.addEventListener('keydown', event => {
+      if (event.key != 'Enter')
+        return;
+      fieldset.classList.toggle('collapsed');
+      onChangeCollapsed();
+    });
+  }
+
   Permissions.bindToCheckbox(
     Permissions.ALL_URLS,
     document.querySelector('#allUrlsPermissionGranted')

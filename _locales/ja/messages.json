@@ -13,6 +13,9 @@
   "dialog_save":              { "message": "フォルダを作成して保存" },
   "dialog_cancel":            { "message": "キャンセル" },
 
+  "config_useDownloadDirOption_caption": { "message": "使用開始前の重要な注意" },
+  "config_useDownloadDirOption_note": { "message": "このアドオンを使用するときは、Firefoxの設定の「一般」→「ファイルとプログラム」→「ダウンロード」で「次のフォルダーに保存する」を選択しておくことを強くお勧めします。「ファイルごとに保存先を指定する」を選択していると、保存しようとしているタブの数だけファイルの保存先を尋ねるダイアログが表示され、非常に煩わしい結果になるので、ご注意ください。" },
+
   "config_saveTabs_caption": { "message": "タブのファイルへの保存" },
   "config_saveTabsPrefix_label_before": { "message": "タブを" },
   "config_saveTabsPrefix_label_after": { "message": "以下に保存する" },

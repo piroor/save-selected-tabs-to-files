@@ -11,6 +11,13 @@
   opacity: 0;
 }
 
+hr {
+  border: 0 none;
+  border-top: 1px solid;
+  margin: 2em 0;
+  width: 100%;
+}
+
 p, ul {
   margin: 0 0 0.5em 0;
   padding: 0;
@@ -38,4 +45,47 @@ ul p.sub {
 :root:not(.debugging) #debug-configs * {
   -moz-user-focus: ignore;
   -moz-user-input: disabled;
+}
+
+
+
+fieldset.collapsible.collapsed > *:not(legend):not(div) /* "div" is for the container of "import" and "export" buttons */ {
+  display: none;
+}
+
+fieldset.collapsible > legend::before {
+  content: "▼";
+  display: inline-block;
+  font-size: 65%;
+  margin-right: 0.5em;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+fieldset.collapsible.collapsed > legend::before {
+  transform: rotate(-90deg);
+}
+
+
+
+#useDownloadDirOptionNote {
+  border: 0 none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+
+#useDownloadDirOptionNote legend {
+  font-size: large;
+  font-weight: bold;
+}
+
+#useDownloadDirOptionNote img {
+  display: block;
+  margin: 1em auto 0;
+  /*
+    664px is the value of `--section-width` defined in Firefox itself.
+    https://searchfox.org/mozilla-central/rev/185ab5e4f4e01341e009cd4633d1275ffe4d4c8b/toolkit/mozapps/extensions/content/aboutaddons.css#8
+  */
+  max-width: calc(664px * 0.9 - 2em);
+  box-shadow: 0.2em 0.2em 1em rgba(0, 0, 0, 0.45);
 }
