@@ -18,6 +18,10 @@ export const configs = new Configs({
     'useDownloadDirOptionNote',
   ],
 
+  useDownloadDirOptionNoteShown: false,
+
+  notificationTimeout: 10 * 1000,
+
   debug: false
 }, {
   localKeys: `
@@ -62,3 +66,57 @@ export function handleMissingReceiverError(error) {
   // otherwise, this error is caused from missing receiver.
   // we just ignore it.
 }
+
+export async function notify({ icon, title, message, timeout, url } = {}) {
+  const id = await browser.notifications.create({
+    type:    'basic',
+    iconUrl: icon || browser.extension.getURL(`resources/Save.svg`),
+    title,
+    message
+  });
+
+  let onClicked;
+  let onClosed;
+  return new Promise(async (resolve, _reject) => {
+    let resolved = false;
+
+    onClicked = notificationId => {
+      if (notificationId != id)
+        return;
+      if (url) {
+        browser.tabs.create({
+          url
+        });
+      }
+      resolved = true;
+      resolve(true);
+    };
+    browser.notifications.onClicked.addListener(onClicked);
+
+    onClosed = notificationId => {
+      if (notificationId != id)
+        return;
+      if (!resolved) {
+        resolved = true;
+        resolve(false);
+      }
+    };
+    browser.notifications.onClosed.addListener(onClosed);
+
+    if (typeof timeout != 'number')
+      timeout = configs.notificationTimeout;
+    if (timeout >= 0) {
+      await wait(timeout);
+    }
+    await browser.notifications.clear(id);
+    if (!resolved)
+      resolve(false);
+  }).then(clicked => {
+    browser.notifications.onClicked.removeListener(onClicked);
+    onClicked = null;
+    browser.notifications.onClosed.removeListener(onClosed);
+    onClosed = null;
+    return clicked;
+  });
+}
+

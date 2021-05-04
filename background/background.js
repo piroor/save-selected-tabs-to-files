@@ -8,7 +8,8 @@
 import {
   log,
   configs,
-  handleMissingReceiverError
+  handleMissingReceiverError,
+  notify,
 } from '/common/common.js';
 import * as Constants from '/common/constants.js';
 import * as Commands from '/common/commands.js';
@@ -16,16 +17,16 @@ import * as ContextMenu from './context-menu.js';
 
 log.context = 'BG';
 
-window.addEventListener('DOMContentLoaded', async () => {
-  await configs.$loaded;
+configs.$loaded.then(async () => {
   browser.commands.onCommand.addListener(onShortcutCommand);
   browser.runtime.onMessageExternal.addListener(onMessageExternal);
   registerToTST();
+  notifyUseDownloadDirOptionNote();
   window.addEventListener('pagehide', async () => {
     unregisterFromTST();
     unregisterFromMTH();
   }, { once: true });
-}, { once: true });
+});
 
 
 /*  listen events */
@@ -129,3 +130,52 @@ function unregisterFromMTH() {
   catch(_e) {
   }
 }
+
+
+const USER_DOWNLOAD_DIR_OPTION_NOTE_URL = browser.extension.getURL(`resources/notify-features.html?useDownloadDirOptionNote`);
+
+async function notifyUseDownloadDirOptionNote() {
+  if (configs.useDownloadDirOptionNoteShown)
+    return false;
+
+  configs.useDownloadDirOptionNoteShown = true;
+  await notify({
+    url:     USER_DOWNLOAD_DIR_OPTION_NOTE_URL,
+    title:   browser.i18n.getMessage(`startup_useDownloadDirOptionNote_title`),
+    message: browser.i18n.getMessage(`startup_useDownloadDirOptionNote_message`),
+    timeout: 90 * 1000
+  });
+  configs.useDownloadDirOptionNoteShown = true; // failsafe: it can be overridden by the value loaded from sync storage
+
+  return true;
+}
+
+function initUseDownloadDirOptionNoteTab(tab) {
+  const title = `${browser.i18n.getMessage('extensionName')} ${browser.runtime.getManifest().version}`;
+  const description = browser.i18n.getMessage('useDownloadDirOption_note');
+
+  browser.tabs.executeScript(tab.id, {
+    code: `{
+      document.querySelector('#title').textContent = document.title = ${JSON.stringify(title)};
+      const descriptionContainer = document.querySelector('#description');
+      descriptionContainer.innerHTML = '';
+      descriptionContainer.appendChild(document.createTextNode(${JSON.stringify(description)}));
+      descriptionContainer.appendChild(document.createElement('br'));
+      const img = descriptionContainer.appendChild(document.createElement('img'));
+      img.alt = '';
+      img.src = ${JSON.stringify(browser.runtime.getURL('/resources/downloads-option.png'))};
+    }`
+  });
+}
+
+browser.tabs.onUpdated.addListener(
+  (_tabId, updateInfo, tab) => {
+    if (updateInfo.status != 'complete')
+      return;
+    initUseDownloadDirOptionNoteTab(tab);
+  },
+  { properties: ['status'],
+    urls: [USER_DOWNLOAD_DIR_OPTION_NOTE_URL] }
+);
+browser.tabs.query({ url: USER_DOWNLOAD_DIR_OPTION_NOTE_URL })
+  .then(tabs => tabs.forEach(initUseDownloadDirOptionNoteTab));
