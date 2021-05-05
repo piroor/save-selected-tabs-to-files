@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 1.1.5 (2021.5.5)
+   * Show a notification about a download config of Firefox at the initial startup.
    * Fix wrong behaviors of "All Configs" UI: apply imported configs to options UI immediately and treat decimal values as valid for some numeric options.
  - 1.1.4 (2020.7.29)
    * Better support for the Managed Storage.
