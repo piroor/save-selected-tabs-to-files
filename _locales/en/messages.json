@@ -25,6 +25,8 @@
   "config_saveTabsPrefix_label_before": { "message": "Save tabs under " },
   "config_saveTabsPrefix_label_after": { "message": "\u200b" },
   "config_saveTabsPrefix_description": { "message": "*Path under the download folder. \"/\" will be recognized as a path delimiter. A `%input%` placeholder in the path produces a diaglog to input folder name when you try to save." },
+  "config_maxFileNameLength_label_before": { "message": "Shorten file name longer than " },
+  "config_maxFileNameLength_label_after": { "message": " characters" },
 
   "config_allUrlsPermissionGranted_label": { "message": "Guess filename extension based on Content-Type of tabs" },
 

@@ -25,6 +25,8 @@
   "config_saveTabsPrefix_label_before": { "message": "タブを" },
   "config_saveTabsPrefix_label_after": { "message": "以下に保存する" },
   "config_saveTabsPrefix_description": { "message": "※ダウンロードフォルダ配下の保存先パスを指定できます。「/」はパスの区切り文字として解釈されます。パスの中にプレースホルダ「%input%」を含めると、保存時にフォルダ名を入力するダイアログが表示されます。" },
+  "config_maxFileNameLength_label_before": { "message": "ファイル名の長さが " },
+  "config_maxFileNameLength_label_after": { "message": "文字より長い場合は省略する" },
 
   "config_allUrlsPermissionGranted_label": { "message": "タブの内容のContent-Typeに基づいてファイル名の拡張子を推定する" },
 

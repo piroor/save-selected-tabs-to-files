@@ -129,8 +129,11 @@ async function suggestFileNameForTab(tab) {
   log('suggestFileNameForTab ', tab.id, fileNameMatch);
   if (fileNameMatch &&
       (kMAYBE_IMAGE_PATTERN.test(fileNameMatch[1]) ||
-       kMAYBE_RAW_FILE_PATTERN.test(fileNameMatch[1])))
-    return fileNameMatch[1];
+       kMAYBE_RAW_FILE_PATTERN.test(fileNameMatch[1]))) {
+    const parts = fileNameMatch[1].split('.');
+    const baseName = parts.slice(0, parts.length - 1);
+    return `${shorten(baseName)}.${parts[parts.length - 1]}`;
+  }
 
   let suggestedExtension = '';
   if (!tab.discarded &&
@@ -159,7 +162,16 @@ async function suggestFileNameForTab(tab) {
     }
   }
   log('suggestedExtension: ', tab.id, suggestedExtension);
-  const fileName = `${tab.title.replace(/[\/\\:*?"<>|]/g, '_')}${suggestedExtension}`;
+  const baseName = shorten(tab.title.replace(/[\/\\:*?"<>|]/g, '_'));
+  const fileName = `${baseName}${suggestedExtension}`;
   log('finally suggested fileName: ', tab.id, fileName);
   return fileName;
+}
+
+function shorten(name) {
+  if (configs.maxFileNameLength < 0 ||
+      name.length < configs.maxFileNameLength)
+    return name;
+
+  return `${name.substring(0, configs.maxFileNameLength - 1)}…`;
 }

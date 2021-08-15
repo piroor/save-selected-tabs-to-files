@@ -13,6 +13,7 @@ export const configs = new Configs({
   showContextCommandForSingleTab: false,
   clearSelectionAfterCommandInvoked: false,
   saveTabsPrefix: browser.i18n.getMessage('saveTabsPrefix_defaultValue'),
+  maxFileNameLength: 30,
 
   optionsExpandedGroups: [
     'useDownloadDirOptionNote',
