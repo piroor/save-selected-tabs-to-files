@@ -27,6 +27,8 @@
   "config_saveTabsPrefix_description": { "message": "*Path under the download folder. \"/\" will be recognized as a path delimiter. A `%input%` placeholder in the path produces a diaglog to input folder name when you try to save." },
   "config_maxFileNameLength_label_before": { "message": "Shorten file name longer than " },
   "config_maxFileNameLength_label_after": { "message": " characters" },
+  "config_maxDownloads_label_before": { "message": "Run " },
+  "config_maxDownloads_label_after": { "message": " downloads parallely at a time" },
 
   "config_allUrlsPermissionGranted_label": { "message": "Guess filename extension based on Content-Type of tabs" },
 
