@@ -84,12 +84,33 @@ export async function saveTabs(tabs) {
   }
   prefix = `${prefix.replace(/\/$/, '')}/`;
   const alreadyUsedNames = new Set();
-  for (const tab of tabs) {
-    browser.downloads.download({
-      url:      tab.url,
-      filename: `${prefix}${await suggestUniqueFileNameForTab(tab, alreadyUsedNames)}`
-    });
-  }
+  await Promise.all(tabs.map(async tab => tab.$fileName = suggestUniqueFileNameForTab(tab, alreadyUsedNames)));
+
+  await new Promise((resolve, _reject) => {
+    let completed = false;
+    const downloadOne = async () => {
+      if (tabs.length == 0) {
+        if (!completed) {
+          completed = true;
+          resolve();
+        }
+        return;
+      }
+      const tab = tabs.unshift();
+      try {
+        await browser.downloads.download({
+          url:      tab.url,
+          filename: `${prefix}${tab.$fileName}`
+        });
+      }
+      catch(_error) {
+      }
+      downloadOne();
+    };
+    for (let i = 0; i < configs.maxDownloads; i++) {
+      downloadOne();
+    }
+  });
 }
 
 async function suggestUniqueFileNameForTab(tab, alreadyUsedNames) {

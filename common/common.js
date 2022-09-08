@@ -14,6 +14,7 @@ export const configs = new Configs({
   clearSelectionAfterCommandInvoked: false,
   saveTabsPrefix: browser.i18n.getMessage('saveTabsPrefix_defaultValue'),
   maxFileNameLength: 30,
+  maxDownloads: 10,
 
   optionsExpandedGroups: [
     'useDownloadDirOptionNote',
