@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 1.2.0 (2022.9.12)
+   * Restrict paralel downloads max 10 tabs by default.
  - 1.1.6 (2021.8.16)
    * Shorten too long file name by default.
    * Show message correctly about a download config of Firefox in the options page.
