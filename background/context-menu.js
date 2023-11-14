@@ -13,13 +13,17 @@ import {
 import * as Constants from '/common/constants.js';
 import * as Commands from '/common/commands.js';
 
+const icons = {
+  '16': '/resources/Save.svg#toolbar',
+};
+
 const mMenuItems = [
   {
     id:       'saveTabsOnTab',
     type:     'normal',
     visible:  true,
     title:    browser.i18n.getMessage('context_saveTabs_label'),
-    icons:    browser.runtime.getManifest().icons,
+    icons,
     contexts: ['tab'],
     config:   'showContextCommandOnTab'
   },
@@ -28,7 +32,7 @@ const mMenuItems = [
     type:     'normal',
     visible:  true,
     title:    browser.i18n.getMessage('context_saveTabs_label'),
-    icons:    browser.runtime.getManifest().icons,
+    icons,
     contexts: ['page'],
     config:   'showContextCommandOnPage'
   }
