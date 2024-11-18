@@ -15,5 +15,8 @@
     "eslint-plugin-import": "^2.13.0",
     "jsonlint-cli": "*",
     "tunnel-agent": ">=0.6.0"
+  },
+  "devDependencies": {
+    "globals": "^15.12.0"
   }
 }
