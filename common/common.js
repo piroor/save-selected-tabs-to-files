@@ -122,3 +122,25 @@ export async function notify({ icon, title, message, timeout, url } = {}) {
   });
 }
 
+
+const RTL_LANGUAGES = new Set([
+  'ar',
+  'he',
+  'fa',
+  'ur',
+  'ps',
+  'sd',
+  'ckb',
+  'prs',
+  'rhg',
+]);
+
+export function isRTL() {
+  const lang = (
+    navigator.language ||
+    navigator.userLanguage ||
+    //(new Intl.DateTimeFormat()).resolvedOptions().locale ||
+    ''
+  ).split('-')[0];
+  return RTL_LANGUAGES.has(lang);
+}
