@@ -7,7 +7,8 @@
 
 import {
   log,
-  configs
+  configs,
+  isRTL,
 } from './common.js';
 import * as Permissions from './permissions.js';
 
@@ -53,14 +54,16 @@ export async function saveTabs(tabs) {
                       white-space: nowrap;
                       margin: 0.5em;"
               ><label style="display: flex;
-                             flex-direction: row;"
+                             flex-direction: row;
+                             direction: ltr; /* file path is always LRT on RTL environment */"
                      ><span>${prePart}</span
                      ><input type="text"
                              name="input"
                              value=""
                              style="display: flex;
                                     flex-grow: 1;
-                                    flex-shrink: 1;"
+                                    flex-shrink: 1;
+                                    ${isRTL() ? 'direction: rtl;' : ''}"
                      ><span>${postPart}</span></label></div>
         `.trim(),
         onShown(container) {
