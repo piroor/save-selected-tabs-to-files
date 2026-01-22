@@ -93,9 +93,9 @@ function onMessageExternal(message, sender) {
 async function registerToTST() {
   try {
     await browser.runtime.sendMessage(Constants.kTST_ID, {
-      type:  Constants.kTSTAPI_REGISTER_SELF,
-      name:  browser.i18n.getMessage('extensionName'),
-      icons: browser.runtime.getManifest().icons,
+      type:           Constants.kTSTAPI_REGISTER_SELF,
+      name:           browser.i18n.getMessage('extensionName'),
+      icons:          browser.runtime.getManifest().icons,
       listeningTypes: [
         Constants.kTSTAPI_NOTIFY_READY,
         Constants.kTSTAPI_CONTEXT_MENU_CLICK,
@@ -175,7 +175,7 @@ browser.tabs.onUpdated.addListener(
     initUseDownloadDirOptionNoteTab(tab);
   },
   { properties: ['status'],
-    urls: [USER_DOWNLOAD_DIR_OPTION_NOTE_URL] }
+    urls:       [USER_DOWNLOAD_DIR_OPTION_NOTE_URL] }
 );
 browser.tabs.query({ url: USER_DOWNLOAD_DIR_OPTION_NOTE_URL })
   .then(tabs => tabs.forEach(initUseDownloadDirOptionNoteTab));

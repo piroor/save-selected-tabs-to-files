@@ -8,13 +8,13 @@
 import Configs from '/extlib/Configs.js';
 
 export const configs = new Configs({
-  showContextCommandOnTab: true,
-  showContextCommandOnPage: false,
-  showContextCommandForSingleTab: false,
+  showContextCommandOnTab:           true,
+  showContextCommandOnPage:          false,
+  showContextCommandForSingleTab:    false,
   clearSelectionAfterCommandInvoked: false,
-  saveTabsPrefix: browser.i18n.getMessage('saveTabsPrefix_defaultValue'),
-  maxFileNameLength: 30,
-  maxDownloads: 10,
+  saveTabsPrefix:                    browser.i18n.getMessage('saveTabsPrefix_defaultValue'),
+  maxFileNameLength:                 30,
+  maxDownloads:                      10,
 
   optionsExpandedGroups: [
     'useDownloadDirOptionNote',
@@ -32,8 +32,7 @@ export const configs = new Configs({
 });
 
 
-export function log(message, ...args)
-{
+export function log(message, ...args) {
   if (!configs || !configs.debug)
     return;
 
