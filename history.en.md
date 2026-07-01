@@ -1,6 +1,7 @@
 # History
 
  - master/HEAD
+   * Prevent possible message storm around sync and reset of configs.
  - 1.2.0 (2022.9.12)
    * Restrict paralel downloads max 10 tabs by default.
  - 1.1.6 (2021.8.16)
