@@ -14,6 +14,8 @@ import * as Permissions from './permissions.js';
 
 import RichConfirm from '/extlib/RichConfirm.js';
 
+RichConfirm.init('/extlib/RichConfirmDialog.html');
+
 export async function getMultiselectedTabs(tab) {
   if (!tab)
     return [];
@@ -45,7 +47,6 @@ export async function saveTabs(tabs) {
       const result = await RichConfirm.showInPopup(windowId, {
         modal:   true,
         type:    'common-dialog',
-        url:     '/resources/blank.html', // required on Firefox ESR68
         title:   browser.i18n.getMessage('dialog_title'),
         content: `
           <div>${browser.i18n.getMessage('dialog_inputDescription')}</div
