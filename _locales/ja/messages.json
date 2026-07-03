@@ -29,6 +29,8 @@
   "config_maxFileNameLength_label_after": { "message": "文字より長い場合は省略する" },
   "config_maxDownloads_label_before": { "message": "ダウンロードを" },
   "config_maxDownloads_label_after": { "message": "件まで並行で行う" },
+  "config_cancelDownloadsThreshold_label_before": { "message": "ダウンロードが" },
+  "config_cancelDownloadsThreshold_label_after":  { "message": "件以上キャンセルされた場合、それ以降のダウンロードを取りやめる" },
 
   "config_allUrlsPermissionGranted_label": { "message": "タブの内容のContent-Typeに基づいてファイル名の拡張子を推定する" },
 

@@ -92,8 +92,13 @@ export async function saveTabs(tabs) {
     tab.$fileName = await suggestUniqueFileNameForTab(tab, alreadyUsedNames)
   }));
 
+  let canceledCount = 0;
   const downloadLoop = async () => {
     while (tabs.length > 0) {
+      if (canceledCount >= configs.cancelDownloadsThreshold) {
+        console.log(`Downloading of tabs are canceled due to ${canceledCount} cancels by the user.`);
+        return;
+      }
       const tab = tabs.shift();
       try {
         await browser.downloads.download({
@@ -101,7 +106,9 @@ export async function saveTabs(tabs) {
           filename: `${prefix}${tab.$fileName}`
         });
       }
-      catch(_error) {
+      catch(error) {
+        if (error?.message == 'Download canceled by the user')
+          canceledCount++;
       }
     }
   };

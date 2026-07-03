@@ -15,6 +15,7 @@ export const configs = new Configs({
   saveTabsPrefix:                    browser.i18n.getMessage('saveTabsPrefix_defaultValue'),
   maxFileNameLength:                 30,
   maxDownloads:                      10,
+  cancelDownloadsThreshold:          3,
 
   optionsExpandedGroups: [
     'useDownloadDirOptionNote',
