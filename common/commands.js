@@ -95,7 +95,8 @@ export async function saveTabs(tabs) {
   let canceledCount = 0;
   const downloadLoop = async () => {
     while (tabs.length > 0) {
-      if (canceledCount >= configs.cancelDownloadsThreshold) {
+      if (configs.cancelDownloadsThreshold > 0 &&
+          canceledCount >= configs.cancelDownloadsThreshold) {
         console.log(`Downloading of tabs are canceled due to ${canceledCount} cancels by the user.`);
         return;
       }
