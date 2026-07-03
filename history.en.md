@@ -1,7 +1,10 @@
 # History
 
  - master/HEAD
+ - 1.2.1 (2026.7.3)
+   * Add a new option to cancel rest downloads when some downloads are canceled by the user manually.
    * Update description about recommended setting in the options page for Firefox 152 and later.
+   * Drop support of Firefox 139 and olders.
  - 1.2.0 (2022.9.12)
    * Restrict paralel downloads max 10 tabs by default.
  - 1.1.6 (2021.8.16)
