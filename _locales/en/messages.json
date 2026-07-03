@@ -30,7 +30,7 @@
   "config_maxDownloads_label_before": { "message": "Run " },
   "config_maxDownloads_label_after": { "message": " downloads parallely at a time" },
   "config_cancelDownloadsThreshold_label_before": { "message": "Cancel rest downloadings of tabs when " },
-  "config_cancelDownloadsThreshold_label_after":  { "message": " or more downloads are canceled" },
+  "config_cancelDownloadsThreshold_label_after":  { "message": " or more downloads are canceled (0 or less means \"never cancel rest downloads\")" },
 
   "config_allUrlsPermissionGranted_label": { "message": "Guess filename extension based on Content-Type of tabs" },
 

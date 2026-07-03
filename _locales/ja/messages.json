@@ -30,7 +30,7 @@
   "config_maxDownloads_label_before": { "message": "ダウンロードを" },
   "config_maxDownloads_label_after": { "message": "件まで並行で行う" },
   "config_cancelDownloadsThreshold_label_before": { "message": "ダウンロードが" },
-  "config_cancelDownloadsThreshold_label_after":  { "message": "件以上キャンセルされた場合、それ以降のダウンロードを取りやめる" },
+  "config_cancelDownloadsThreshold_label_after":  { "message": "件以上キャンセルされた場合、それ以降のダウンロードを取りやめる（0以下の値＝ダウンロードを取りやめない）" },
 
   "config_allUrlsPermissionGranted_label": { "message": "タブの内容のContent-Typeに基づいてファイル名の拡張子を推定する" },
 
