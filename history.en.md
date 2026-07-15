@@ -1,6 +1,8 @@
 # History
 
  - master/HEAD
+ - 1.2.2 (2026.7.15)
+   * Fix mis-scaled dialog in a high-DPR display.
  - 1.2.1 (2026.7.3)
    * Add a new option to cancel rest downloads when some downloads are canceled by the user manually.
    * Update description about recommended setting in the options page for Firefox 152 and later.
